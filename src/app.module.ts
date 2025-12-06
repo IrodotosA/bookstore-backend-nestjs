@@ -7,6 +7,7 @@ import { BooksModule } from './books/books.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { WishlistModule } from './wishlist/wishlist.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { WishlistModule } from './wishlist/wishlist.module';
     AuthModule,
     UsersModule,
     WishlistModule,
+    OrdersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
