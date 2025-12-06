@@ -6,6 +6,11 @@ import * as express from 'express';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // 🚀 Allow all origins (frontend can call backend)
+  app.enableCors({
+    origin: '*',
+  });
+
   app.use('/uploads', express.static(join(__dirname, '..', 'uploads')));
 
   const port = process.env.PORT || 3000;
