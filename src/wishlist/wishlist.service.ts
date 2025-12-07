@@ -43,7 +43,7 @@ async addItem(userId: string, bookId: string) {
 
   // Remove item
   async removeItem(userId: string, bookId: string) {
-    const wishlist = await this.wishlistModel.findOne({ userId });
+    const wishlist = await this.wishlistModel.findOne({ userId: new Types.ObjectId(userId) });
 
     if (!wishlist)
       throw new NotFoundException('Wishlist not found');
