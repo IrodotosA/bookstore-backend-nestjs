@@ -30,32 +30,25 @@ export class UsersController {
     return this.service.findAll();
   }
 
-  // ADMIN: Get one user
-  @Get(':id')
-  @UseGuards(AuthGuard, AdminGuard)
-  findOne(@Param('id') id: string) {
-    return this.service.findOne(id);
-  }
-
   // USER: Get my profile
   @Get('me/profile')
   @UseGuards(AuthGuard)
   getMe(@Req() req: any) {
-    return this.service.getMe(req.user.id);
+    return this.service.getMe(req.user.id as string);
   }
 
   // USER: Update my profile
   @Put('me')
   @UseGuards(AuthGuard)
   updateMe(@Req() req: any, @Body() dto: UpdateProfileDto) {
-    return this.service.updateMe(req.user.id, dto);
+    return this.service.updateMe(req.user.id as string, dto);
   }
 
   // USER: Change password
-  @Put('me/change-password')
+  @Put('change-password')
   @UseGuards(AuthGuard)
   changePassword(@Req() req: any, @Body() dto: ChangePasswordDto) {
-    return this.service.changePassword(req.user.id, dto);
+    return this.service.changePassword(req.user.id as string, dto);
   }
 
   // ADMIN: Create a user
@@ -64,6 +57,14 @@ export class UsersController {
   create(@Body() dto: CreateUserDto) {
     return this.service.createUser(dto);
   }
+
+  // ADMIN: Get one user
+  @Get(':id')
+  @UseGuards(AuthGuard, AdminGuard)
+  findOne(@Param('id') id: string) {
+    return this.service.findOne(id);
+  }
+
 
   // ADMIN: Update user
   @Put(':id')
