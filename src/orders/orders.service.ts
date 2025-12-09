@@ -38,10 +38,10 @@ export class OrdersService {
 
   async cancelOrder(orderId: string, userId: string) {
     const order = await this.orderModel.findOne({
-      _id: orderId,
-      userId,
+      _id: new Types.ObjectId(orderId),
+      userId: new Types.ObjectId(userId),
     });
-
+    
     if (!order) throw new NotFoundException('Order not found');
 
     if (order.status !== 'pending') {
