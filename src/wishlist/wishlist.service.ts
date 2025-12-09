@@ -60,8 +60,9 @@ async addItem(userId: string, bookId: string) {
   // Clear wishlist
   async clear(userId: string) {
     await this.wishlistModel.findOneAndUpdate(
-      { userId },
+      { userId: new Types.ObjectId(userId) }, // FIXED QUERY
       { items: [] },
+      { new: true }
     );
 
     return { message: 'Wishlist cleared' };
